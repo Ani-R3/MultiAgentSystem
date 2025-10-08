@@ -1,0 +1,21 @@
+2025-10-08 21:21:39,131 - Controller - INFO - PDF context timer started at 2025-10-08 21:21:39.131377
+2025-10-08 21:21:43,883 - Controller - INFO - 
+================================================================================
+2025-10-08 21:21:43,883 - Controller - INFO - New query received: 'latest news'
+2025-10-08 21:21:43,889 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 21:21:45,074 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 21:21:45,074 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 21:21:50,473 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 21:21:51,353 - Controller - INFO - Final Answer: CNN is reporting on the latest news for U.S., world, weather, entertainment, politics and health. Fox News is reporting on breaking news such as a for...
+2025-10-08 21:21:55,474 - Controller - INFO - 
+================================================================================
+2025-10-08 21:21:55,474 - Controller - INFO - New query received: 'summarize pdf'
+2025-10-08 21:21:55,474 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 21:21:55,929 - Controller - INFO - LLM router chose: PDF_RAG
+2025-10-08 21:21:55,929 - Controller - INFO - Routing Decision: PDF_RAG | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 21:21:55,999 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 21:21:57,028 - Controller - INFO - Final Answer: The paper describes GRAM, a system designed to improve generalization abilities in AI.  
+
+GRAM works in six stages:
+
+1. **Representation:** Grids are ...

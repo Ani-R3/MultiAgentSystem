@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Multi-Agent System</h1>
+            <p class="subtitle">Your intelligent assistant for document analysis, web search, and research.</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>1. Upload a PDF (Optional)</h2>
+                <form id="uploadForm">
+                    <div class="input-group">
+                        <input type="file" id="pdfFile" accept="application/pdf">
+                        <button type="submit">Upload</button>
+                    </div>
+                </form>
+                <div id="uploadStatus"></div>
+            </div>
+
+            <div class="card">
+                <h2>2. Ask a Question</h2>
+                <form id="askForm">
+                    <div class="input-group">
+                        <input type="text" id="queryInput" placeholder="e.g., 'Summarize this document' or 'Recent papers on AI'">
+                        <button type="submit">Ask</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card result-card">
+                <h2>Result</h2>
+                <div class="loader-container" id="loader" style="display: none;">
+                    <div class="loader"></div>
+                    <p>Thinking...</p>
+                </div>
+                <div id="result-content">
+                    <div id="rationaleBox"></div>
+                    <pre id="answerBox">Your answer will appear here.</pre>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Controller Logs</h2>
+                <button id="loadLogs">Load Logs</button>
+                <pre id="logsBox"></pre>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
