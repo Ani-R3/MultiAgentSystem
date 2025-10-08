@@ -19,3 +19,146 @@
 GRAM works in six stages:
 
 1. **Representation:** Grids are ...
+2025-10-08 22:34:10,084 - Controller - INFO - 
+================================================================================
+2025-10-08 22:34:10,091 - Controller - INFO - New query received: 'hii buddy'
+2025-10-08 22:34:10,091 - Controller - INFO - Handling as a direct conversational query.
+2025-10-08 22:34:18,094 - Controller - INFO - 
+================================================================================
+2025-10-08 22:34:18,096 - Controller - INFO - New query received: 'whats your name ''
+2025-10-08 22:34:18,096 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:34:19,715 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:34:19,715 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:34:23,312 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:34:23,748 - Controller - INFO - Final Answer: My name is Noodle....
+2025-10-08 22:35:57,759 - Controller - INFO - 
+================================================================================
+2025-10-08 22:35:57,760 - Controller - INFO - New query received: 'HAVE YOU EATEN'
+2025-10-08 22:35:57,760 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:35:58,689 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:35:58,689 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:36:00,827 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:36:01,500 - Controller - INFO - Final Answer: I could not find a relevant answer in the provided information....
+2025-10-08 22:46:21,532 - Controller - INFO - PDF context timer started at 2025-10-08 22:46:21.532207
+2025-10-08 22:46:43,604 - Controller - INFO - 
+================================================================================
+2025-10-08 22:46:43,605 - Controller - INFO - New query received: 'hii buddy'
+2025-10-08 22:46:43,605 - Controller - INFO - Handling as a direct conversational query.
+2025-10-08 22:46:56,552 - Controller - INFO - 
+================================================================================
+2025-10-08 22:46:56,552 - Controller - INFO - New query received: 'whats your name'
+2025-10-08 22:46:56,553 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:46:58,096 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:46:58,096 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:47:00,452 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:47:00,908 - Controller - INFO - Final Answer: I could not find a relevant answer in the provided information....
+2025-10-08 22:47:07,146 - Controller - INFO - 
+================================================================================
+2025-10-08 22:47:07,146 - Controller - INFO - New query received: 'what is your name'
+2025-10-08 22:47:07,146 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:47:07,735 - Controller - INFO - LLM router chose: PDF_RAG
+2025-10-08 22:47:07,735 - Controller - INFO - Routing Decision: PDF_RAG | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:47:07,866 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:47:08,332 - Controller - INFO - Final Answer: I could not find a relevant answer in the provided information....
+2025-10-08 22:47:21,446 - Controller - INFO - 
+================================================================================
+2025-10-08 22:47:21,446 - Controller - INFO - New query received: 'what  is your name'
+2025-10-08 22:47:21,446 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:47:22,408 - Controller - INFO - LLM router chose: PDF_RAG
+2025-10-08 22:47:22,408 - Controller - INFO - Routing Decision: PDF_RAG | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:47:22,433 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:47:22,930 - Controller - INFO - Final Answer: I could not find a relevant answer in the provided information....
+2025-10-08 22:47:24,531 - Controller - INFO - 
+================================================================================
+2025-10-08 22:47:24,531 - Controller - INFO - New query received: 'what  is your name?'
+2025-10-08 22:47:24,531 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:47:24,911 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:47:24,911 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:47:26,421 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:47:26,792 - Controller - INFO - Final Answer: My name is Teacher Sally!...
+2025-10-08 22:47:54,778 - Controller - INFO - 
+================================================================================
+2025-10-08 22:47:54,778 - Controller - INFO - New query received: 'what is your name ?'
+2025-10-08 22:47:54,778 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:47:56,168 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:47:56,169 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:47:58,096 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:47:58,570 - Controller - INFO - Final Answer: My name is Teacher Sally!...
+2025-10-08 22:48:21,791 - Controller - INFO - 
+================================================================================
+2025-10-08 22:48:21,791 - Controller - INFO - New query received: 'summarize the pdf'
+2025-10-08 22:48:21,791 - Controller - INFO - Routing Decision: PDF_RAG | Rationale: PDF context is active and query used high-certainty keywords for the document.
+2025-10-08 22:48:21,820 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:48:22,780 - Controller - INFO - Final Answer: This research paper introduces GRAM, a framework for AI that aims to combine neural creativity with symbolic reasoning.  
+
+The paper's goals are:
+
+* *...
+2025-10-08 22:48:34,575 - Controller - INFO - 
+================================================================================
+2025-10-08 22:48:34,575 - Controller - INFO - New query received: 'latest news'
+2025-10-08 22:48:34,575 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:48:35,534 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:48:35,534 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:48:37,478 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:48:38,026 - Controller - INFO - Final Answer: View the latest news and breaking news today for U.S., world, weather, entertainment, politics and health at CNN.com. 
+
+Go to NBCNews.com for breaking...
+2025-10-08 22:48:48,554 - Controller - INFO - 
+================================================================================
+2025-10-08 22:48:48,554 - Controller - INFO - New query received: 'recent developments'
+2025-10-08 22:48:48,554 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:48:49,129 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:48:49,129 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:48:52,495 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:48:52,930 - Controller - INFO - Final Answer: A mix of new commercial and residential projects stands to help reframe the city's development....
+2025-10-08 22:50:31,383 - Controller - INFO - 
+================================================================================
+2025-10-08 22:50:31,383 - Controller - INFO - New query received: 'latest news on ISRO's Gaganyaan'
+2025-10-08 22:50:31,384 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:50:32,208 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:50:32,209 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:50:34,299 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:50:34,804 - Controller - INFO - Final Answer: The Gaganyaan G-1 mission is still planned to launch in December.  ISRO successfully conducted its first Integrated Air Drop Test (IADT-01) as part of...
+2025-10-08 22:55:06,798 - Controller - INFO - 
+================================================================================
+2025-10-08 22:55:06,799 - Controller - INFO - New query received: 'hii buddy'
+2025-10-08 22:55:06,799 - Controller - INFO - Handling as a direct conversational query.
+2025-10-08 22:55:39,353 - Controller - INFO - 
+================================================================================
+2025-10-08 22:55:39,353 - Controller - INFO - New query received: 'lastest news on ISro,s Gaganyan mission'
+2025-10-08 22:55:39,353 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:55:39,948 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:55:39,948 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:55:41,216 - Controller - INFO - 
+================================================================================
+2025-10-08 22:55:41,216 - Controller - INFO - New query received: 'lastest news on ISro,s Gaganyan mission'
+2025-10-08 22:55:41,216 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:55:41,605 - Controller - INFO - LLM router chose: WEB_SEARCH
+2025-10-08 22:55:41,605 - Controller - INFO - Routing Decision: WEB_SEARCH | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:55:43,369 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:55:43,409 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:55:43,839 - Controller - INFO - Final Answer: The Gaganyaan G-1 mission is still planned to launch in December.  Preparatory activities are ongoing. ISRO's Vyommitra, an AI-powered half-humanoid r...
+2025-10-08 22:55:44,028 - Controller - INFO - Final Answer: The Gaganyaan G-1 mission is on track for a planned launch in December.  ISRO's Vyommitra, an AI-powered half-humanoid robot, is set to fly on the unc...
+2025-10-08 22:57:26,911 - Controller - INFO - 
+================================================================================
+2025-10-08 22:57:26,911 - Controller - INFO - New query received: 'find a research paper on transformers in computer vision'
+2025-10-08 22:57:26,911 - Controller - INFO - Routing Decision: ARXIV_SEARCH | Rationale: Query contained high-certainty keywords for ArXiv.
+2025-10-08 22:57:28,772 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:57:29,477 - Controller - INFO - Final Answer: Here are a couple of research papers on transformers in computer vision:
+
+* **Vision Transformers: State of the Art and Research Challenges** 
+* **ViT...
+2025-10-08 22:58:06,795 - Controller - INFO - PDF context timer started at 2025-10-08 22:58:06.794948
+2025-10-08 22:58:12,921 - Controller - INFO - 
+================================================================================
+2025-10-08 22:58:12,923 - Controller - INFO - New query received: 'summarize pdf'
+2025-10-08 22:58:12,923 - Controller - INFO - Using LLM for intelligent routing...
+2025-10-08 22:58:13,631 - Controller - INFO - LLM router chose: PDF_RAG
+2025-10-08 22:58:13,631 - Controller - INFO - Routing Decision: PDF_RAG | Rationale: Query was ambiguous, used LLM for intelligent routing.
+2025-10-08 22:58:13,685 - Controller - INFO - Synthesizing final answer with LLM...
+2025-10-08 22:58:14,473 - Controller - INFO - Final Answer: The GRAM research paper describes a novel framework called GRAM for solving abstraction and reasoning tasks. 
+
+GRAM works in six stages:
+
+1. **Represe...
