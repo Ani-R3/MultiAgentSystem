@@ -1,5 +1,3 @@
-# backend/RAGAgent.py
-
 import os
 import logging
 import fitz  # PyMuPDF
@@ -9,13 +7,11 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 # Constants
 PDF_UPLOADS_DIR = "uploads"
-VECTOR_STORE_PATH = "vector_store"
 os.makedirs(PDF_UPLOADS_DIR, exist_ok=True)
-os.makedirs(VECTOR_STORE_PATH, exist_ok=True)
 
 logger = logging.getLogger("RAGAgentLogger")
-logger.setLevel(logging.INFO)
 if not logger.handlers:
+    logger.setLevel(logging.INFO)
     handler = logging.StreamHandler()
     handler.setFormatter(logging.Formatter('%(asctime)s - RAG - %(levelname)s - %(message)s'))
     logger.addHandler(handler)
@@ -30,74 +26,56 @@ class RAGAgent:
             logger.error(f"✗ Failed to load embedding model: {e}", exc_info=True)
             raise
         self.vectorStore = None
-        self.LoadVectorStore()
 
     def ProcessPDF(self, pdfPath):
         try:
             logger.info(f"Processing PDF: {os.path.basename(pdfPath)}")
             doc = fitz.open(pdfPath)
-            page_count = len(doc)
             
-            all_texts, all_metadatas = [], []
+            all_texts = []
+            all_metadatas = []
+
+            # Process page by page to be more memory efficient
             for page_num, page in enumerate(doc):
                 page_text = page.get_text("text")
-                if not page_text.strip(): continue
+                if not page_text.strip():
+                    continue
                 
-                text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+                # Use smaller chunks for memory efficiency
+                text_splitter = RecursiveCharacterTextSplitter(chunk_size=750, chunk_overlap=100)
                 chunks = text_splitter.split_text(page_text)
                 
-                for i, chunk in enumerate(chunks):
+                for chunk in chunks:
                     all_texts.append(chunk)
                     all_metadatas.append({"source": os.path.basename(pdfPath), "page": page_num + 1})
-            
+
             doc.close()
-            logger.info(f"✓ Extracted {len(all_texts)} chunks from {page_count} pages.")
+            logger.info(f"✓ Extracted {len(all_texts)} chunks.")
 
             if not all_texts:
-                logger.error("✗ No text chunks extracted.")
+                logger.error("✗ No text chunks extracted from PDF.")
                 return False
 
-            logger.info("Creating new vector store for the uploaded PDF...")
+            logger.info("Creating new vector store in memory from PDF chunks...")
+            # This is the key fix: Create a new, temporary vector store in memory for each upload.
+            # We do NOT save to disk, which prevents the memory crash on Render.
             self.vectorStore = FAISS.from_texts(texts=all_texts, embedding=self.embeddings, metadatas=all_metadatas)
-            self.vectorStore.save_local(VECTOR_STORE_PATH)
-            logger.info("✓ Vector store created and saved.")
+            logger.info("✓ Vector store created successfully for this session.")
             return True
 
         except Exception as e:
             logger.error(f"✗ Error processing PDF: {e}", exc_info=True)
-            return False
-
-    def LoadVectorStore(self):
-        if os.path.exists(f"{VECTOR_STORE_PATH}/index.faiss"):
-            try:
-                self.vectorStore = FAISS.load_local(VECTOR_STORE_PATH, self.embeddings, allow_dangerous_deserialization=True)
-                logger.info(f"✓ Vector store loaded successfully with {self.vectorStore.index.ntotal} vectors.")
-            except Exception as e:
-                logger.error(f"✗ Error loading vector store: {e}", exc_info=True)
-        else:
-            logger.info("No existing vector store found.")
+            # Re-raise the exception to be caught by the bulletproof handler in app.py
+            raise
 
     def QueryRAG(self, userQuery):
         logger.info(f"RAG received query: '{userQuery}'")
         if not self.vectorStore:
-            logger.warning("✗ No vector store loaded.")
-            return "No documents have been uploaded."
+            logger.warning("✗ Vector store is not available for this session.")
+            return "No document has been processed in this session. Please upload a PDF first."
 
-        # SMART RETRIEVAL
-        generic_summaries = ['summarize', 'summary', 'overview', 'abstract', 'what is this about', 'what is this document about', 'what is the pdf about']
-        if any(kw in userQuery.lower() for kw in generic_summaries):
-            logger.info("Generic summary requested. Fetching content from the first page.")
-            try:
-                # Get all chunks from the first page
-                retrieved_docs = [self.vectorStore.docstore.get_document(doc_id) for doc_id, doc in self.vectorStore.index_to_docstore_id.items() if self.vectorStore.docstore.get_document(doc_id).metadata.get('page') == 1]
-                if not retrieved_docs: # Fallback if first page has no content
-                     retrieved_docs = self.vectorStore.similarity_search(userQuery, k=3)
-            except Exception as e:
-                logger.error(f"Could not get docs by page, falling back to similarity search. Error: {e}")
-                retrieved_docs = self.vectorStore.similarity_search(userQuery, k=3)
-        else:
-            logger.info("Specific query received. Performing similarity search.")
-            retrieved_docs = self.vectorStore.similarity_search(userQuery, k=5)
+        logger.info("Performing similarity search...")
+        retrieved_docs = self.vectorStore.similarity_search(userQuery, k=4)
         
         if not retrieved_docs:
             logger.warning("✗ No relevant document chunks found.")
