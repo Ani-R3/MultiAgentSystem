@@ -1,10 +1,8 @@
-# backend/app.py
-
 import os
 from flask import Flask, request, jsonify, render_template
-from RAGAgent import RAGAgent, PDF_UPLOADS_DIR
-from SearchAgents import WebSearchAgent, ArxivSearchAgent
-from ControllerAgent import ControllerAgent
+from .RAGAgent import RAGAgent, PDF_UPLOADS_DIR
+from .SearchAgents import WebSearchAgent, ArxivSearchAgent
+from .ControllerAgent import ControllerAgent
 
 app = Flask(__name__)
 
@@ -39,7 +37,7 @@ def UploadPDF():
     wasSuccessful = ragAgent.ProcessPDF(filepath)
 
     if wasSuccessful:
-        controller.SetPdfUploadTime() # Call the correct function
+        controller.SetPdfUploadTime()
         return jsonify({"message": f"File '{file.filename}' processed successfully."})
     else:
         return jsonify({"error": "Failed to process the PDF file."}), 500
@@ -47,10 +45,12 @@ def UploadPDF():
 @app.route('/logs', methods=['GET'])
 def Logs():
     try:
-        with open('logs/controller_trace.log', 'r') as f:
+        # Note: The path for Gunicorn is relative to the project root
+        with open('backend/logs/controller_trace.log', 'r') as f:
             return f.read(), 200, {'Content-Type': 'text/plain; charset=utf-8'}
     except FileNotFoundError:
         return "Log file not found.", 404
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
